@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Marque - Shop Ta Sape</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+   
+</head>
+<body class="bg-white text-black font-sans">
+     <!-- Header -->
+    <header class="bg-black text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <h1 class="text-3xl font-bold tracking-wider">SHOP TA <span class="text-gray-300">SAPE</span></h1>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="shop_ta_sape/index.html" class="nav-link hover:text-gray-300 transition">Boutique</a>
+                <a href="Atelier/index.html" class="nav-link hover:text-gray-300 transition">L'Atelier</a>
+                <a href="Marque/index.html" class="nav-link hover:text-gray-300 transition">La Marque</a>
+            </nav>
+            
+            <!-- Icons -->
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-gray-300 transition"><i class="fas fa-search"></i></a>
+                <a href="login.html" class="hover:text-gray-300 transition"><i class="fas fa-user"></i></a>
+                <a href="#" class="hover:text-gray-300 transition relative">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="absolute -top-2 -right-2 bg-white text-black rounded-full w-5 h-5 flex items-center justify-center text-xs">0</span>
+                </a>
+                <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black py-4 px-4">
+            <a href="shop_ta_sape/index.html" class="block py-2 hover:text-gray-300 transition">Boutique</a>
+            <a href="Atelier/index.html" class="block py-2 hover:text-gray-300 transition">L'Atelier</a>
+            <a href="Marque/index.html" class="block py-2 hover:text-gray-300 transition">La Marque</a>
+            <div class="border-t border-gray-700 mt-2 pt-2">
+                <a href="login.html" class="block py-2 hover:text-gray-300 transition">Connexion</a>
+                <a href="register.html" class="block py-2 hover:text-gray-300 transition">Inscription</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav fixed top-0 left-0 h-full w-64 bg-black text-white z-50 p-6" id="mobileNav">
+        <button class="absolute top-4 right-4 text-white focus:outline-none" id="closeMobileMenu">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+        
+        <div class="mt-12">
+            <ul class="space-y-4">
+                <li><a href="../index.html" class="block py-2 hover:text-gray-300 transition">Accueil</a></li>
+                <li><a href="../shop_ta_sape/index.html" class="block py-2 hover:text-gray-300 transition">Boutique</a></li>
+                <li><a href="../Atelier/index.html" class="block py-2 hover:text-gray-300 transition">L'Atelier</a></li>
+                <li><a href="#blog" class="block py-2 hover:text-gray-300 transition">Blog</a></li>
+                <li><a href="#contact" class="block py-2 hover:text-gray-300 transition">Contact</a></li>
+                <li><a href="#login" class="block py-2 hover:text-gray-300 transition">Connexion</a></li>
+                <li><a href="#register" class="block py-2 hover:text-gray-300 transition">Inscription</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="overlay fixed inset-0 bg-black bg-opacity-50 z-40" id="overlay"></div>
+
+    <!-- Hero Section -->
+    <section class="relative bg-black text-white py-20 flex items-center" id="hero">
+        <div class="container mx-auto px-4 z-10 fade-in text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">NOTRE MARQUE</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Découvrez l'univers Shop Ta Sape, notre histoire, nos valeurs et nos collections capsule exclusives</p>
+        </div>
+    </section>
+
+    <!-- Histoire Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2">
+                    <img src="img/BlackFleuriste.jpg" alt="Notre Histoire" class="w-full h-auto object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6">Notre Histoire</h2>
+                    <p class="text-gray-700 mb-4">Shop Ta Sape est née d'une passion pour la mode authentique et engagée. Fondée en 2018 par Djodji Jones, notre marque puise son inspiration dans les rues de Paris et l'énergie de la culture urbaine.</p>
+                    <p class="text-gray-700 mb-4">Notre philosophie est simple : créer des vêtements qui racontent une histoire, qui transcendent les tendances éphémères et qui s'inscrivent dans une démarche responsable.</p>
+                    <p class="text-gray-700">Aujourd'hui, Shop Ta Sape c'est une équipe de 15 passionnés qui œuvrent chaque jour pour vous proposer des collections innovantes, à mi-chemin entre l'artisanat traditionnel et le design contemporain.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                        <!-- Value 1 -->
+                        <div class="value-item bg-gray-100 p-6 rounded-lg text-center transition duration-300">
+                            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3 class="font-bold mb-2">Durabilité</h3>
+                            <p class="text-sm text-gray-600">Nous privilégions des matériaux durables et des processus de production responsables.</p>
+                        </div>
+                        
+                        <!-- Value 2 -->
+                        <div class="value-item bg-gray-100 p-6 rounded-lg text-center transition duration-300">
+                            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-pen-fancy"></i>
+                            </div>
+                            <h3 class="font-bold mb-2">Créativité</h3>
+                            <p class="text-sm text-gray-600">Chaque collection est le fruit d'un processus créatif unique et authentique.</p>
+                        </div>
+                        
+                        <!-- Value 3 -->
+                        <div class="value-item bg-gray-100 p-6 rounded-lg text-center transition duration-300">
+                            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h3 class="font-bold mb-2">Communauté</h3>
+                            <p class="text-sm text-gray-600">Nous cultivons une relation privilégiée avec notre communauté de passionnés.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drops Section -->
+    <section class="py-16 bg-black text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Drops Capsule</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">Découvrez nos collections limitées disponibles exclusivement pendant une période définie</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Drop 1 -->
+                <div class="drop-card bg-gray-900 border border-gray-800 rounded-lg overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <span class="absolute top-4 right-4 bg-white text-black px-3 py-1 text-xs font-bold rounded-full">3 JOURS</span>
+                        <img src="img/collection.jpg" alt="Drop Urban Collection" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition flex items-center justify-center">
+                            <button class="drop-action bg-white text-black px-6 py-2 font-bold opacity-0 hover:opacity-100 transition">Voir le lookbook</button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="bg-red-600 text-white px-3 py-1 text-xs font-bold rounded">Bientôt disponible</span>
+                        <h3 class="font-bold text-xl my-3">Urban Collection</h3>
+                        <p class="text-gray-300 mb-4">Une collection inspirée par l'énergie des métropoles, alliant streetwear et élégance urbaine.</p>
+                        <div class="flex justify-between text-sm text-gray-400 mb-4">
+                            <span>Début: 25/11/2023</span>
+                            <span>Fin: 10/12/2023</span>
+                        </div>
+                        <button class="drop-waitlist w-full border border-white text-white px-4 py-2 font-bold transition">Rejoindre la liste d'attente</button>
+                    </div>
+                </div>
+                
+                <!-- Drop 2 -->
+                <div class="drop-card bg-gray-900 border border-gray-800 rounded-lg overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <span class="absolute top-4 right-4 bg-white text-black px-3 py-1 text-xs font-bold rounded-full">ACTIF</span>
+                        <img src="img/EXPO.jpg" alt="Drop Neo Retro" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition flex items-center justify-center">
+                            <button class="drop-action bg-white text-black px-6 py-2 font-bold opacity-0 hover:opacity-100 transition">Acheter maintenant</button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="bg-green-600 text-white px-3 py-1 text-xs font-bold rounded">Disponible</span>
+                        <h3 class="font-bold text-xl my-3">Casquettes Retro</h3>
+                        <p class="text-gray-300 mb-4">Réinterprétation moderne des silhouettes vintage des années 90. Édition limitée à 500 pièces.</p>
+                        <div class="flex justify-between text-sm text-gray-400 mb-4">
+                            <span>Début: 05/11/2023</span>
+                            <span>Fin: 20/11/2023</span>
+                        </div>
+                        <button class="drop-waitlist w-full border border-white text-white px-4 py-2 font-bold transition">Accéder à la collection</button>
+                    </div>
+                </div>
+                
+                <!-- Drop 3 -->
+                <div class="drop-card bg-gray-900 border border-gray-800 rounded-lg overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <span class="absolute top-4 right-4 bg-white text-black px-3 py-1 text-xs font-bold rounded-full">TERMINÉ</span>
+                        <img src="img/sappe.jpg" alt="Drop Eco Essentials" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition flex items-center justify-center">
+                            <button class="drop-action bg-white text-black px-6 py-2 font-bold opacity-0 hover:opacity-100 transition">Voir le lookbook</button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="bg-gray-600 text-white px-3 py-1 text-xs font-bold rounded">Terminé</span>
+                        <h3 class="font-bold text-xl my-3">Eco Essentials</h3>
+                        <p class="text-gray-300 mb-4">Collection éco-responsable en matériaux recyclés. Épuisée en 72 heures.</p>
+                        <div class="flex justify-between text-sm text-gray-400 mb-4">
+                            <span>Début: 15/09/2023</span>
+                            <span>Fin: 30/09/2023</span>
+                        </div>
+                        <button class="drop-waitlist w-full border border-white text-white px-4 py-2 font-bold transition">Être alerté du réassort</button>
+                    </div>
+                </div>
+                <!-- Drop 4 -->
+                <div class="drop-card bg-gray-900 border border-gray-800 rounded-lg overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <span class="absolute top-4 right-4 bg-white text-black px-3 py-1 text-xs font-bold rounded-full">TERMINÉ</span>
+                        <img src="img/sappe2.jpg" alt="Drop Eco Essentials" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition flex items-center justify-center">
+                            <button class="drop-action bg-white text-black px-6 py-2 font-bold opacity-0 hover:opacity-100 transition">Voir le lookbook</button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="bg-gray-600 text-white px-3 py-1 text-xs font-bold rounded">Terminé</span>
+                        <h3 class="font-bold text-xl my-3"> Essentials</h3>
+                        <p class="text-gray-300 mb-4">Collection Essentials Épuisée en 72 heures.</p>
+                        <div class="flex justify-between text-sm text-gray-400 mb-4">
+                            <span>Début: 15/09/2023</span>
+                            <span>Fin: 30/09/2023</span>
+                        </div>
+                        <button class="drop-waitlist w-full border border-white text-white px-4 py-2 font-bold transition">Être alerté du réassort</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Blog & Actualités</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Découvrez les dernières nouvelles, événements et projets de la marque</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Blog 1 -->
+                <div class="blog-card bg-white border border-gray-200 rounded-lg overflow-hidden transition duration-300">
+                    <div class="blog-image h-48 overflow-hidden">
+                        <img src="imgs/image1.jpeg" alt="Event Paris Fashion Week" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-red-600 text-sm font-bold">ÉVÉNEMENT</span>
+                        <h3 class="font-bold text-lg my-2">Notre passage a la Fashion Dakar</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Retour sur notre première participation à la Fashion  de Dakar et les retours sur notre collection.</p>
+                        <div class="text-gray-500 text-sm flex items-center">
+                            <i class="far fa-calendar mr-2"></i> 15 octobre 2024
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog 2 -->
+                <div class="blog-card bg-white border border-gray-200 rounded-lg overflow-hidden transition duration-300">
+                    <div class="blog-image h-48 overflow-hidden">
+                        <img src="img/CEO.jpg" alt="Interview Fondateur" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-red-600 text-sm font-bold">INTERVIEW</span>
+                        <h3 class="font-bold text-lg my-2">Rencontre avec notre fondateur</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Djodji Jones confie sur les origines de la marque et sa vision pour l'avenir.</p>
+                        <div class="text-gray-500 text-sm flex items-center">
+                            <i class="far fa-calendar mr-2"></i> 8 octobre 2024
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog 3 -->
+                <div class="blog-card bg-white border border-gray-200 rounded-lg overflow-hidden transition duration-300">
+                    <div class="blog-image h-48 overflow-hidden">
+                        <img src="imgs/image4.jpeg" alt="Collaboration Artiste" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-red-600 text-sm font-bold">COLLABORATION</span>
+                        <h3 class="font-bold text-lg my-2">Nouvelle collaboration artistique</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Découvrez notre partenariat avec l'artiste street art pour une collection exclusive.</p>
+                        <div class="text-gray-500 text-sm flex items-center">
+                            <i class="far fa-calendar mr-2"></i> 1 octobre 2024
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Galerie & Médias</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Découvrez notre univers visuel à travers nos lookbooks et contenus exclusifs</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Gallery Items -->
+                <div class="gallery-item h-40 md:h-60 rounded-lg overflow-hidden">
+                    <img src="img/plugB.jpg" alt="Lookbook 1" class="w-full h-full object-cover transition duration-500">
+                </div>
+                <div class="gallery-item h-40 md:h-60 rounded-lg overflow-hidden">
+                    <img src="img/collection.jpg" alt="Lookbook 2" class="w-full h-full object-cover transition duration-500">
+                </div>
+                <div class="gallery-item h-40 md:h-60 rounded-lg overflow-hidden">
+                    <img src="img/plugY.jpg" alt="Behind The Scenes" class="w-full h-full object-cover transition duration-500">
+                </div>
+                <div class="gallery-item h-40 md:h-60 rounded-lg overflow-hidden">
+                    <img src="img/PlugG.jpg" alt="Campaign" class="w-full h-full object-cover transition duration-500">
+                </div>
+                <div class="gallery-item h-40 md:h-60 rounded-lg overflow-hidden">
+                    <img src="img/plugD.jpg" alt="Event Photo" class="w-full h-full object-cover transition duration-500">
+                </div>
+                <div class="gallery-item h-40 md:h-60 rounded-lg overflow-hidden">
+                    <img src="img/plugF.jpg" alt="Studio Shot" class="w-full h-full object-cover transition duration-500">
+                </div>
+                <div class="gallery-item h-40 md:h-60 rounded-lg overflow-hidden">
+                    <img src="img/sappe.jpg" alt="Detail Shot" class="w-full h-full object-cover transition duration-500">
+                </div>
+                <div class="gallery-item h-40 md:h-60 rounded-lg overflow-hidden">
+                    <img src="img/SNAP.jpg" alt="Collection" class="w-full h-full object-cover transition duration-500">
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">SHOP TA SAPE</h3>
+                    <p class="mb-4">Redéfinissez votre style avec nos collections exclusives et pièces uniques.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                
+                <!-- La Marque -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">LA MARQUE</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-300 transition">Notre Histoire</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Nos Valeurs</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Drops Capsule</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Blog & Actualités</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Lookbook</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Informations -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">INFORMATIONS</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-300 transition">Livraison & Retours</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Guide des tailles</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">FAQ</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Politique de confidentialité</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Conditions générales</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">CONTACT</h3>
+                    <address class="not-italic">
+                        <p class="mb-2"><i class="fas fa-envelope mr-2"></i> contact@shoptasape.com</p>
+                        <p class="mb-2"><i class="fas fa-phone mr-2"></i> +221 70 000 00 00</p>
+                        <p><i class="fas fa-map-marker-alt mr-2"></i> 123 Rue de la Mode, Dakar</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Shop Ta Sape. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu
+      
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+            
+            // actions
+            const dropActions = document.querySelectorAll('.drop-action, .drop-waitlist');
+            dropActions.forEach(action => {
+                action.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const card = this.closest('.drop-card');
+                    const title = card.querySelector('h3').textContent;
+                    
+                    if (this.classList.contains('drop-waitlist')) {
+                        alert(`Vous avez rejoint la liste d'attente pour: ${title}`);
+                    } else {
+                        alert(`Action pour: ${title}`);
+                    }
+                });
+            });
+            
+            // Gallery items
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    alert('Ouverture de la galerie');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Atelier - Shop Ta Sape</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-white text-black font-sans">
+  <!-- Header -->
+    <header class="bg-black text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <h1 class="text-3xl font-bold tracking-wider">SHOP TA <span class="text-gray-300">SAPE</span></h1>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="shop_ta_sape/index.html" class="nav-link hover:text-gray-300 transition">Boutique</a>
+                <a href="Atelier/index.html" class="nav-link hover:text-gray-300 transition">L'Atelier</a>
+                <a href="../Marque/index.html" class="nav-link hover:text-gray-300 transition">La Marque</a>
+            </nav>
+            
+            <!-- Icons -->
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-gray-300 transition"><i class="fas fa-search"></i></a>
+                <a href="login.html" class="hover:text-gray-300 transition"><i class="fas fa-user"></i></a>
+                <a href="#" class="hover:text-gray-300 transition relative">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="absolute -top-2 -right-2 bg-white text-black rounded-full w-5 h-5 flex items-center justify-center text-xs">0</span>
+                </a>
+                <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black py-4 px-4">
+            <a href="shop_ta_sape/index.html" class="block py-2 hover:text-gray-300 transition">Boutique</a>
+            <a href="../Atelier/index.html" class="block py-2 hover:text-gray-300 transition">L'Atelier</a>
+            <a href="../Marque/index.html" class="block py-2 hover:text-gray-300 transition">La Marque</a>
+            <div class="border-t border-gray-700 mt-2 pt-2">
+                <a href="../login.html" class="block py-2 hover:text-gray-300 transition">Connexion</a>
+                <a href="../register.html" class="block py-2 hover:text-gray-300 transition">Inscription</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav fixed top-0 left-0 h-full w-64 bg-black text-white z-50 p-6" id="mobileNav">
+        <button class="absolute top-4 right-4 text-white focus:outline-none" id="closeMobileMenu">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+        
+        <div class="mt-12">
+            <ul class="space-y-4">
+                <li><a href="../index.html" class="block py-2 hover:text-gray-300 transition">Accueil</a></li>
+                <li><a href="../shop_ta_sape/index.html" class="block py-2 hover:text-gray-300 transition">Boutique</a></li>
+                <li><a href="../Marque/index.html" class="block py-2 hover:text-gray-300 transition">La Marque</a></li>
+                <li><a href="../login.html" class="block py-2 hover:text-gray-300 transition">Connexion</a></li>
+                <li><a href="../register.html" class="block py-2 hover:text-gray-300 transition">Inscription</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="overlay fixed inset-0 bg-black bg-opacity-50 z-40" id="overlay"></div>
+    <!-- Hero Section -->
+    <section class="relative bg-black text-white py-20 flex items-center" id="hero">
+        <div class="container mx-auto px-4 z-10 fade-in text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">L'ATELIER LE FLEURISTE</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Découvrez nos pièces uniques et collections exclusives créées avec passion et savoir-faire artisanal.</p>
+        </div>
+    </section>
+
+    <!-- Concept Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2">
+                    <img src="img/image0.jpeg" alt="Notre Atelier" class="w-full h-auto object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6">L'Art de la Création Unique</h2>
+                    <p class="text-gray-700 mb-4">L'Atelier Shop Ta Sape est un espace dédié à la création de pièces exclusives, où l'artisanat rencontre l'innovation. Chaque vêtement est conçu avec une attention particulière aux détails et une passion pour l'excellence.</p>
+                    <p class="text-gray-700 mb-4">Notre créateur travaille main dans la main avec des artisans talentueux pour vous proposer des collections limitées qui reflètent l'essence même de notre marque : authenticité, qualité et originalité.</p>
+                    <p class="text-gray-700">Dans notre atelier, nous privilégions des matériaux premium et des techniques de confection traditionnelles pour créer des pièces qui transcendent les tendances éphémères.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Notre Processus Créatif</h2>
+            <p class="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">Découvrez les étapes de création de nos pièces uniques, de l'inspiration à la réalisation finale</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="process-step bg-white p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lightbulb text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Inspiration</h3>
+                    <p class="text-gray-600">Chaque collection naît d'une inspiration unique, puisée dans l'art, la culture ou la nature.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="process-step bg-white p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-pencil-alt text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Conception</h3>
+                    <p class="text-gray-600">Nos designers transforment l'inspiration en croquis détaillés et en patrons précis.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="process-step bg-white p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-cut text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Réalisation</h3>
+                    <p class="text-gray-600">Nos artisans sélectionnent les meilleurs matériaux et confectionnent chaque pièce avec précision.</p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="process-step bg-white p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-check-circle text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Contrôle Qualité</h3>
+                    <p class="text-gray-600">Chaque création est minutieusement inspectée pour garantir une qualité exceptionnelle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creations Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Nos Créations Exclusives</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Découvrez nos pièces uniques et collections limitées, disponibles en quantités restreintes</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Creation 1 -->
+                <div class="creation-card bg-white border border-gray-200 rounded-lg overflow-hidden transition duration-300">
+                    <div class="relative overflow-hidden">
+                        <span class="absolute top-4 left-4 bg-black text-white px-3 py-1 text-xs font-bold z-10">Pièce Unique</span>
+                        <img src="img/image5.jpeg" alt="Ensemble Broderie Main" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition flex items-center justify-center">
+                            <button class="creation-action bg-white text-black px-6 py-2 font-bold opacity-0 hover:opacity-100 transition">Voir détails</button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-2">Ensemble Broderie Main</h3>
+                        <p class="text-gray-600 mb-3">Broderie artisanale réalisée à la main, pièce numérotée.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold">50.000 Frcs</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">★ Pièce unique</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Creation 2 -->
+                <div class="creation-card bg-white border border-gray-200 rounded-lg overflow-hidden transition duration-300">
+                    <div class="relative overflow-hidden">
+                        <span class="absolute top-4 left-4 bg-black text-white px-3 py-1 text-xs font-bold z-10">Édition Limitée</span>
+                        <img src="img/image3.jpeg" alt="Pantalon Surmeasure" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition flex items-center justify-center">
+                            <button class="creation-action bg-white text-black px-6 py-2 font-bold opacity-0 hover:opacity-100 transition">Voir détails</button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-2">Pantalon Surmeasure</h3>
+                        <p class="text-gray-600 mb-3">Pantalon surmeasure fleur travaillée artisanalement, seulement 10 exemplaires.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold">30.000 Frcs</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">✪ 3/10 disponibles</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Creation 3 -->
+                <div class="creation-card bg-white border border-gray-200 rounded-lg overflow-hidden transition duration-300">
+                    <div class="relative overflow-hidden">
+                        <span class="absolute top-4 left-4 bg-black text-white px-3 py-1 text-xs font-bold z-10">Précommande</span>
+                        <img src="img/image1.jpeg" alt="Collection Hiver" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition flex items-center justify-center">
+                            <button class="creation-action bg-white text-black px-6 py-2 font-bold opacity-0 hover:opacity-100 transition">Précommander</button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-2">Collection Hiver</h3>
+                        <p class="text-gray-600 mb-3">Conception limitée à 15 exemplaires.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold">20.000 Frcs</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">◷ Livraison décembre</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section class="py-16 bg-black text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Dans les Coulisses de l'Atelier</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">Découvrez notre processus créatif à travers ces vidéos exclusives</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Video 1 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="img/image0.jpeg" alt="Entrainement" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="video-play w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center cursor-pointer transition">
+                                <i class="fas fa-play text-2xl text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Entrainement</h3>
+                        <p class="text-gray-300">Assister à nos entrainements avec nos Mannequins.</p>
+                    </div>
+                </div>
+                
+                <!-- Video 2 -->
+                <div class="bg-gray-900 rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="img/image5.jpeg" alt="Preparation de l'evenement" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="video-play w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center cursor-pointer transition">
+                                <i class="fas fa-play text-2xl text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Preparation de l'evenement</h3>
+                        <p class="text-gray-300">Visite exclusive de notre atelier.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">SHOP TA SAPE</h3>
+                    <p class="mb-4">Redéfinissez votre style avec nos collections exclusives et pièces uniques.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/atelier_lefleuriste/" target="_blank" class="hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" class="hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <!-- L'Atelier -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">L'ATELIER</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-300 transition">Notre Philosophie</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Créations Uniques</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Collections Limitées</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Processus Créatif</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Précommandes</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Informations -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">INFORMATIONS</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-300 transition">Livraison & Retours</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Guide des tailles</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">FAQ</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Politique de confidentialité</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Conditions générales</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">CONTACT</h3>
+                    <address class="not-italic">
+                        <p class="mb-2"><i class="fas fa-envelope mr-2"></i> atelier@shoptasape.com</p>
+                        <p class="mb-2"><i class="fas fa-phone mr-2"></i> +221 78 000 00 00</p>
+                        <p><i class="fas fa-map-marker-alt mr-2"></i> 123 Rue de la Création</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Shop Ta Sape. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu
+        
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+            
+            // Video play buttons
+            const videoPlays = document.querySelectorAll('.video-play');
+            videoPlays.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('Fonctionnalité vidéo à implémenter');
+                });
+            });
+            
+            // Creation action buttons
+            const creationActions = document.querySelectorAll('.creation-action');
+            creationActions.forEach(button => {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.creation-card');
+                    const title = card.querySelector('h3').textContent;
+                    alert(`Voir les détails pour: ${title}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+
+ body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            /* font-family: 'Bodoni Moda', serif; */
+        }
+        
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .universe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .universe-link {
+            transition: all 0.3s ease;
+        }
+        
+        .universe-link:hover {
+            background-color: black !important;
+            color: white !important;
+        }
+
+
+        
