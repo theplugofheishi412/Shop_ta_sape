@@ -11,7 +11,7 @@
 </head>
 <body class="bg-white text-black font-sans">
      <!-- Header -->
-    <header class="bg-black text-white sticky top-0 z-50 shadow-lg">
+  <header class="bg-black text-white sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <!-- Logo -->
             <div class="flex items-center">
@@ -20,15 +20,15 @@
             
             <!-- Navigation -->
             <nav class="hidden md:flex space-x-8">
-                <a href="shop_ta_sape/index.html" class="nav-link hover:text-gray-300 transition">Boutique</a>
-                <a href="Atelier/index.html" class="nav-link hover:text-gray-300 transition">L'Atelier</a>
-                <a href="Marque/index.html" class="nav-link hover:text-gray-300 transition">La Marque</a>
+                <a href="../shop_ta_sape/index.html" class="nav-link hover:text-gray-300 transition">Boutique</a>
+                <a href="../Atelier/index.html" class="nav-link hover:text-gray-300 transition">L'Atelier</a>
+                <a href="index.html" class="nav-link hover:text-gray-300 transition">La Marque</a>
             </nav>
             
             <!-- Icons -->
             <div class="flex items-center space-x-4">
                 <a href="#" class="hover:text-gray-300 transition"><i class="fas fa-search"></i></a>
-                <a href="login.html" class="hover:text-gray-300 transition"><i class="fas fa-user"></i></a>
+                <a href="../Connexion/login.html" class="hover:text-gray-300 transition"><i class="fas fa-user"></i></a>
                 <a href="#" class="hover:text-gray-300 transition relative">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="absolute -top-2 -right-2 bg-white text-black rounded-full w-5 h-5 flex items-center justify-center text-xs">0</span>
@@ -41,35 +41,16 @@
         
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-black py-4 px-4">
-            <a href="shop_ta_sape/index.html" class="block py-2 hover:text-gray-300 transition">Boutique</a>
-            <a href="Atelier/index.html" class="block py-2 hover:text-gray-300 transition">L'Atelier</a>
-            <a href="Marque/index.html" class="block py-2 hover:text-gray-300 transition">La Marque</a>
+            <a href="../shop_ta_sape/index.html" class="block py-2 hover:text-gray-300 transition">Boutique</a>
+            <a href="../Atelier/index.html" class="block py-2 hover:text-gray-300 transition">L'Atelier</a>
+            <a href="index.html" class="block py-2 hover:text-gray-300 transition">La Marque</a>
             <div class="border-t border-gray-700 mt-2 pt-2">
-                <a href="login.html" class="block py-2 hover:text-gray-300 transition">Connexion</a>
-                <a href="register.html" class="block py-2 hover:text-gray-300 transition">Inscription</a>
+                <a href="../Connexion/login.html" class="block py-2 hover:text-gray-300 transition">Connexion</a>
+                <a href="../Connexion/register.html" class="block py-2 hover:text-gray-300 transition">Inscription</a>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-nav fixed top-0 left-0 h-full w-64 bg-black text-white z-50 p-6" id="mobileNav">
-        <button class="absolute top-4 right-4 text-white focus:outline-none" id="closeMobileMenu">
-            <i class="fas fa-times text-xl"></i>
-        </button>
-        
-        <div class="mt-12">
-            <ul class="space-y-4">
-                <li><a href="../index.html" class="block py-2 hover:text-gray-300 transition">Accueil</a></li>
-                <li><a href="../shop_ta_sape/index.html" class="block py-2 hover:text-gray-300 transition">Boutique</a></li>
-                <li><a href="../Atelier/index.html" class="block py-2 hover:text-gray-300 transition">L'Atelier</a></li>
-                <li><a href="#blog" class="block py-2 hover:text-gray-300 transition">Blog</a></li>
-                <li><a href="#contact" class="block py-2 hover:text-gray-300 transition">Contact</a></li>
-                <li><a href="#login" class="block py-2 hover:text-gray-300 transition">Connexion</a></li>
-                <li><a href="#register" class="block py-2 hover:text-gray-300 transition">Inscription</a></li>
-            </ul>
-        </div>
-    </div>
-    
     <div class="overlay fixed inset-0 bg-black bg-opacity-50 z-40" id="overlay"></div>
 
     <!-- Hero Section -->

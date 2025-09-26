@@ -1,43 +1,65 @@
- 
- // Mobile menu 
-        document.getElementById('mobile-menu-button').addEventListener('click', function () {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
+// Configuration principale
+const CONFIG = {
+    PASSWORD_REGEX: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+    MESSAGES: {
+        PASSWORD_MISMATCH: 'Les mots de passe ne correspondent pas',
+        PASSWORD_REQUIREMENTS: 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre'
+    }
+};
 
-        //
-        document.getElementById('register-form').addEventListener('submit', function (e) {
-            e.preventDefault();
+// Gestion du menu mobile
+document.getElementById('mobile-menu-button')?.addEventListener('click', function () {
+    const menu = document.getElementById('mobile-menu');
+    menu?.classList.toggle('hidden');
+});
 
-            // Validation du formulaire
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
+// Gestion du formulaire d'inscription
+document.getElementById('register-form')?.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-            if (password !== confirmPassword) {
-                alert('Les mots de passe ne correspondent pas');
-                return;
-            }
+    const password = document.getElementById('password')?.value;
+    const confirmPassword = document.getElementById('confirm-password')?.value;
 
+    if (password !== confirmPassword) {
+        alert(CONFIG.MESSAGES.PASSWORD_MISMATCH);
+        return;
+    }
 
-            
-            console.log("Tentative d'inscription...");
-            // Ajoutez ici votre logique d'inscription
-        });
+    // Collecte des données du formulaire
+    const formData = {
+        firstname: document.getElementById('firstname')?.value,
+        lastname: document.getElementById('lastname')?.value,
+        email: document.getElementById('email')?.value,
+        password: password,
+        phone: document.getElementById('phone')?.value,
+        newsletter: document.getElementById('newsletter')?.checked
+    };
 
-        // Validation du mot de passe 
-        document.getElementById('password').addEventListener('input', function (e) {
-            const password = e.target.value;
-            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    console.log('Données d\'inscription:', formData);
+    // TODO: Ajouter l'appel API pour l'inscription
+});
 
-            if (!regex.test(password)) {
-                this.setCustomValidity('Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre');
-            } else {
-                this.setCustomValidity('');
-            }
-        });
+// Validation du mot de passe en temps
+document.getElementById('password')?.addEventListener('input', function (e) {
+    const password = e.target.value;
 
+    if (!CONFIG.PASSWORD_REGEX.test(password)) {
+        this.setCustomValidity(CONFIG.MESSAGES.PASSWORD_REQUIREMENTS);
+    } else {
+        this.setCustomValidity('');
+    }
+});
 
-// formulaire de connexion
-/*document.getElementById('login-form').addEventListener('submit', function (e) {
-         
-        });*/
+//  formulaire de connexion
+document.getElementById('login-form')?.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const formData = {
+        email: document.getElementById('email')?.value,
+        password: document.getElementById('password')?.value,
+        remember: document.getElementById('remember')?.checked
+    };
+    window.location.href = "index.html";
+    console.log('Tentative de connexion:', formData);
+    // TODO: Ajouter l'appel API pour la connexion
+});
