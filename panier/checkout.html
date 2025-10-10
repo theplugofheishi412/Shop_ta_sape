@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement - Shop Ta Sape</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        .logo-text {
+            font-family: 'Bodoni Moda', serif;
+            font-weight: 700;
+            font-size: 41.86px;
+            line-height: 62.8px;
+            letter-spacing: 2px;
+        }
+        
+        .checkout-section {
+            background-color: #f9f9f9;
+            min-height: 70vh;
+        }
+        
+        .checkout-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-input {
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            padding: 12px 15px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #000;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            margin: 0 20px;
+        }
+        
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .step.active .step-circle {
+            background-color: #000;
+            color: white;
+        }
+        
+        .step.completed .step-circle {
+            background-color: #10b981;
+            color: white;
+        }
+        
+        .step-line {
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            width: 100px;
+            height: 2px;
+            background-color: #e2e8f0;
+            z-index: 1;
+        }
+        
+        .step:last-child .step-line {
+            display: none;
+        }
+        
+        .step.completed .step-line {
+            background-color: #10b981;
+        }
+        
+        .payment-method {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-method:hover {
+            border-color: #000;
+        }
+        
+        .payment-method.selected {
+            border-color: #000;
+            background-color: #f8fafc;
+        }
+        
+        .payment-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        .btn-primary {
+            background-color: #000;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #000;
+            padding: 12px 30px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #000;
+            color: white;
+        }
+        
+        .order-summary {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .order-item {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 15px 0;
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .card-input {
+            background-image: linear-gradient(to right, #000 50%, transparent 50%);
+            background-position: 0% 50%;
+            background-repeat: no-repeat;
+            background-size: 0% 100%;
+            transition: background-size 0.3s;
+        }
+        
+        .card-input:focus {
+            background-size: 100% 100%;
+            color: white;
+        }
+        
+        .card-input:focus::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-white text-black">
+    <!-- Header -->
+    <header class="bg-black text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <h1 class="logo-text">SHOP TA <span class="text-gray-300">SAPE</span></h1>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="shop_ta_sape/index.html" class="nav-link hover:text-gray-300 transition">Boutique</a>
+                <a href="Atelier/index.html" class="nav-link hover:text-gray-300 transition">L'Atelier</a>
+                <a href="Marque/index.html" class="nav-link hover:text-gray-300 transition">La Marque</a>
+            </nav>
+            
+            <!-- Icons -->
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-gray-300 transition"><i class="fas fa-search"></i></a>
+                <a href="login.html" class="hover:text-gray-300 transition"><i class="fas fa-user"></i></a>
+                <a href="panier.html" class="hover:text-gray-300 transition relative">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="absolute -top-2 -right-2 bg-white text-black rounded-full w-5 h-5 flex items-center justify-center text-xs">3</span>
+                </a>
+                <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black py-4 px-4">
+            <a href="shop_ta_sape/index.html" class="block py-2 hover:text-gray-300 transition">Boutique</a>
+            <a href="Atelier/index.html" class="block py-2 hover:text-gray-300 transition">L'Atelier</a>
+            <a href="Marque/index.html" class="block py-2 hover:text-gray-300 transition">La Marque</a>
+            <div class="border-t border-gray-700 mt-2 pt-2">
+                <a href="login.html" class="block py-2 hover:text-gray-300 transition">Connexion</a>
+                <a href="register.html" class="block py-2 hover:text-gray-300 transition">Inscription</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Indicateur de progression -->
+    <section class="bg-gray-100 py-4">
+        <div class="container mx-auto px-4">
+            <div class="step-indicator">
+                <div class="step completed">
+                    <div class="step-circle">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <span>Panier</span>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step completed">
+                    <div class="step-circle">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <span>Livraison</span>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step active">
+                    <div class="step-circle">3</div>
+                    <span>Paiement</span>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step">
+                    <div class="step-circle">4</div>
+                    <span>Confirmation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section de paiement -->
+    <section class="checkout-section py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto fade-in">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Formulaire de paiement -->
+                    <div class="checkout-card p-8">
+                        <h2 class="text-2xl font-bold mb-6">INFORMATIONS DE PAIEMENT</h2>
+                        
+                        <!-- Méthodes de paiement -->
+                        <div class="mb-6">
+                            <h3 class="form-label mb-4">MÉTHODE DE PAIEMENT</h3>
+                            
+                            <div class="payment-method selected" data-method="card">
+                                <div class="flex items-center">
+                                    <i class="fas fa-credit-card payment-icon"></i>
+                                    <div>
+                                        <h4 class="font-bold">Carte de crédit/débit</h4>
+                                        <p class="text-sm text-gray-600">Paiement sécurisé par carte bancaire</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-method" data-method="paypal">
+                                <div class="flex items-center">
+                                    <i class="fab fa-paypal payment-icon" style="color: #003087;"></i>
+                                    <div>
+                                        <h4 class="font-bold">PayPal</h4>
+                                        <p class="text-sm text-gray-600">Paiement rapide et sécurisé</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-method" data-method="mobile">
+                                <div class="flex items-center">
+                                    <i class="fas fa-mobile-alt payment-icon"></i>
+                                    <div>
+                                        <h4 class="font-bold">Paiement mobile</h4>
+                                        <p class="text-sm text-gray-600">Orange Money, Wave, etc.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Formulaire de carte -->
+                        <div id="card-form">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="card-number" class="form-label">Numéro de carte</label>
+                                    <input type="text" id="card-number" class="form-input card-input" placeholder="1234 5678 9012 3456" maxlength="19">
+                                </div>
+                                <div>
+                                    <label for="card-name" class="form-label">Nom sur la carte</label>
+                                    <input type="text" id="card-name" class="form-input" placeholder="JEAN DUPONT">
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-3 gap-4 mb-6">
+                                <div>
+                                    <label for="card-expiry" class="form-label">Expiration</label>
+                                    <input type="text" id="card-expiry" class="form-input" placeholder="MM/AA" maxlength="5">
+                                </div>
+                                <div>
+                                    <label for="card-cvc" class="form-label">CVC</label>
+                                    <input type="text" id="card-cvc" class="form-input" placeholder="123" maxlength="3">
+                                </div>
+                                <div class="flex items-end">
+                                    <div class="flex space-x-2">
+                                        <i class="fab fa-cc-visa text-3xl text-blue-600"></i>
+                                        <i class="fab fa-cc-mastercard text-3xl text-red-500"></i>
+                                        <i class="fab fa-cc-amex text-3xl text-blue-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Formulaire PayPal (caché par défaut) -->
+                        <div id="paypal-form" class="hidden">
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                                <p class="text-yellow-700">Vous serez redirigé vers PayPal pour finaliser votre paiement.</p>
+                            </div>
+                            <button type="button" class="bg-blue-600 text-white py-3 px-6 rounded font-bold w-full mb-4">
+                                <i class="fab fa-paypal mr-2"></i>Payer avec PayPal
+                            </button>
+                        </div>
+                        
+                        <!-- Formulaire mobile (caché par défaut) -->
+                        <div id="mobile-form" class="hidden">
+                            <div class="mb-4">
+                                <label for="mobile-provider" class="form-label">Opérateur mobile</label>
+                                <select id="mobile-provider" class="form-input">
+                                    <option value="">Sélectionnez votre opérateur</option>
+                                    <option value="orange">Orange Money</option>
+                                    <option value="wave">Wave</option>
+                                    <option value="free">Free Money</option>
+                                    <option value="emoney">E-Money</option>
+                                </select>
+                            </div>
+                            <div class="mb-6">
+                                <label for="mobile-number" class="form-label">Numéro de téléphone</label>
+                                <input type="text" id="mobile-number" class="form-input" placeholder="77 123 45 67">
+                            </div>
+                        </div>
+                        
+                        <!-- Adresse de facturation -->
+                        <div class="mb-6">
+                            <div class="flex items-center mb-4">
+                                <input type="checkbox" id="different-address" class="mr-2">
+                                <label for="different-address" class="form-label mb-0">Utiliser une adresse de facturation différente</label>
+                            </div>
+                            
+                            <div id="billing-address" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="billing-street" class="form-label">Adresse</label>
+                                    <input type="text" id="billing-street" class="form-input" placeholder="123 Avenue de la Mode">
+                                </div>
+                                <div>
+                                    <label for="billing-city" class="form-label">Ville</label>
+                                    <input type="text" id="billing-city" class="form-input" placeholder="Paris">
+                                </div>
+                                <div>
+                                    <label for="billing-zip" class="form-label">Code postal</label>
+                                    <input type="text" id="billing-zip" class="form-input" placeholder="75001">
+                                </div>
+                                <div>
+                                    <label for="billing-country" class="form-label">Pays</label>
+                                    <select id="billing-country" class="form-input">
+                                        <option value="fr">France</option>
+                                        <option value="sn">Sénégal</option>
+                                        <option value="ci">Côte d'Ivoire</option>
+                                        <option value="other">Autre</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Conditions -->
+                        <div class="mb-6">
+                            <div class="flex items-start">
+                                <input type="checkbox" id="terms" class="mr-2 mt-1" required>
+                                <label for="terms" class="text-sm">J'accepte les <a href="#" class="text-black underline">conditions générales de vente</a> et la <a href="#" class="text-black underline">politique de confidentialité</a></label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary mb-4">
+                            <i class="fas fa-lock mr-2"></i>PAYER MAINTENANT
+                        </button>
+                        
+                        <div class="text-center text-sm text-gray-600">
+                            <p><i class="fas fa-shield-alt mr-2"></i>Paiement 100% sécurisé et crypté</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Récapitulatif de la commande -->
+                    <div class="lg:col-span-1">
+                        <div class="checkout-card p-6 sticky top-24">
+                            <h3 class="font-bold text-xl mb-6">RÉCAPITULATIF DE LA COMMANDE</h3>
+                            
+                            <div class="order-summary p-4 mb-6">
+                                <div class="order-item">
+                                    <div class="flex justify-between mb-2">
+                                        <div class="flex items-center">
+                                            <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                                 alt="Chemise premium" class="w-16 h-16 object-cover rounded mr-3">
+                                            <div>
+                                                <p class="font-bold">Chemise Premium</p>
+                                                <p class="text-sm text-gray-600">Taille: M • Quantité: 1</p>
+                                            </div>
+                                        </div>
+                                        <span class="font-bold">45.000 FCFA</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="order-item">
+                                    <div class="flex justify-between mb-2">
+                                        <div class="flex items-center">
+                                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                                 alt="Jean denim" class="w-16 h-16 object-cover rounded mr-3">
+                                            <div>
+                                                <p class="font-bold">Jean Denim</p>
+                                                <p class="text-sm text-gray-600">Taille: 34 • Quantité: 1</p>
+                                            </div>
+                                        </div>
+                                        <span class="font-bold">65.000 FCFA</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="order-item">
+                                    <div class="flex justify-between mb-2">
+                                        <div class="flex items-center">
+                                            <img src="https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                                 alt="Chaussures cuir" class="w-16 h-16 object-cover rounded mr-3">
+                                            <div>
+                                                <p class="font-bold">Chaussures en Cuir</p>
+                                                <p class="text-sm text-gray-600">Pointure: 42 • Quantité: 1</p>
+                                            </div>
+                                        </div>
+                                        <span class="font-bold">85.000 FCFA</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="pt-4 border-t border-gray-300">
+                                    <div class="flex justify-between mb-2">
+                                        <span>Sous-total</span>
+                                        <span>195.000 FCFA</span>
+                                    </div>
+                                    <div class="flex justify-between mb-2">
+                                        <span>Livraison</span>
+                                        <span>5.000 FCFA</span>
+                                    </div>
+                                    <div class="flex justify-between mb-2 text-green-600">
+                                        <span>Remise</span>
+                                        <span>-10.000 FCFA</span>
+                                    </div>
+                                    <div class="flex justify-between font-bold text-lg pt-2 border-t border-gray-300">
+                                        <span>Total</span>
+                                        <span>190.000 FCFA</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Adresse de livraison -->
+                            <div class="mb-6">
+                                <h4 class="font-bold mb-2">ADRESSE DE LIVRAISON</h4>
+                                <p class="text-gray-700">Jean Dupont</p>
+                                <p class="text-gray-700">123 Avenue de la Mode</p>
+                                <p class="text-gray-700">75001 Paris, France</p>
+                                <p class="text-gray-700">+33 1 23 45 67 89</p>
+                            </div>
+                            
+                            <!-- Mode de livraison -->
+                            <div>
+                                <h4 class="font-bold mb-2">MODE DE LIVRAISON</h4>
+                                <p class="text-gray-700">Livraison standard</p>
+                                <p class="text-sm text-gray-600">Délai estimé: 3-5 jours ouvrables</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sécurité -->
+    <section class="py-8 bg-black text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">PAIEMENT SÉCURISÉ</h3>
+                    <p class="text-gray-300">Vos données sont cryptées et protégées</p>
+                </div>
+                <div class="flex space-x-6">
+                    <i class="fas fa-lock text-2xl"></i>
+                    <i class="fas fa-shield-alt text-2xl"></i>
+                    <i class="fas fa-user-shield text-2xl"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">SHOP TA SAPE</h3>
+                    <p class="mb-4">Redéfinissez votre style avec nos collections exclusives et pièces uniques.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Liens -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">LIENS RAPIDES</h3>
+                    <ul class="space-y-2">
+                        <li><a href="shop_ta_sape/index.html" class="hover:text-gray-300 transition">Boutique Officielle</a></li>
+                        <li><a href="Atelier/index.html" class="hover:text-gray-300 transition">L'Atelier</a></li>
+                        <li><a href="Marque/index.html" class="hover:text-gray-300 transition">La Marque</a></li>
+                        <li><a href="#contact" class="hover:text-gray-300 transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Informations -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">INFORMATIONS</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="hover:text-gray-300 transition">À propos</a></li>
+                        <li><a href="#shipping" class="hover:text-gray-300 transition">Livraison</a></li>
+                        <li><a href="#returns" class="hover:text-gray-300 transition">Retours</a></li>
+                        <li><a href="#privacy" class="hover:text-gray-300 transition">Politique de confidentialité</a></li>
+                        <li><a href="#terms" class="hover:text-gray-300 transition">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">CONTACT</h3>
+                    <address class="not-italic">
+                        <p class="mb-2">Email: contact@shoptasape.com</p>
+                        <p class="mb-2">Téléphone: +221 78 000 00 00</p>
+                        <p>Adresse: 123 Rue de la Mode, Dakar</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Shop Ta Sape. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Sélection de la méthode de paiement
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                // Désélectionner toutes les méthodes
+                document.querySelectorAll('.payment-method').forEach(m => {
+                    m.classList.remove('selected');
+                });
+                
+                // Sélectionner la méthode cliquée
+                this.classList.add('selected');
+                
+                // Afficher le formulaire correspondant
+                const methodType = this.getAttribute('data-method');
+                document.getElementById('card-form').classList.add('hidden');
+                document.getElementById('paypal-form').classList.add('hidden');
+                document.getElementById('mobile-form').classList.add('hidden');
+                
+                document.getElementById(methodType + '-form').classList.remove('hidden');
+            });
+        });
+        
+        // Adresse de facturation différente
+        document.getElementById('different-address').addEventListener('change', function() {
+            const billingAddress = document.getElementById('billing-address');
+            if (this.checked) {
+                billingAddress.classList.remove('hidden');
+            } else {
+                billingAddress.classList.add('hidden');
+            }
+        });
+        
+        // Formatage du numéro de carte
+        document.getElementById('card-number').addEventListener('input', function() {
+            let value = this.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = '';
+            
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedValue += ' ';
+                }
+                formattedValue += value[i];
+            }
+            
+            this.value = formattedValue;
+        });
+        
+        // Formatage de la date d'expiration
+        document.getElementById('card-expiry').addEventListener('input', function() {
+            let value = this.value.replace(/\//g, '').replace(/[^0-9]/gi, '');
+            
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            
+            this.value = value;
+        });
+        
+        // Soumission du formulaire
+        document.querySelector('.btn-primary').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Validation simple
+            const terms = document.getElementById('terms');
+            if (!terms.checked) {
+                alert('Veuillez accepter les conditions générales de vente');
+                return;
+            }
+            
+            // Simulation de traitement
+            this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Traitement en cours...';
+            this.disabled = true;
+            
+            setTimeout(function() {
+                window.location.href = 'confirmation.html';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

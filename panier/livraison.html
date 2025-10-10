@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraison - Shop Ta Sape</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap');
+        
+        body {
+            font-family: 'Bodoni Moda', serif;
+        }
+        
+        .logo-text {
+            font-family: 'Bodoni Moda', serif;
+            font-weight: 700;
+            font-size: 41.86px;
+            line-height: 62.8px;
+            letter-spacing: 2px;
+        }
+        
+        .delivery-section {
+            background-color: #f9f9f9;
+            min-height: 70vh;
+        }
+        
+        .delivery-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-input {
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            padding: 12px 15px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #000;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            margin: 0 20px;
+        }
+        
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .step.active .step-circle {
+            background-color: #000;
+            color: white;
+        }
+        
+        .step.completed .step-circle {
+            background-color: #10b981;
+            color: white;
+        }
+        
+        .step-line {
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            width: 100px;
+            height: 2px;
+            background-color: #e2e8f0;
+            z-index: 1;
+        }
+        
+        .step:last-child .step-line {
+            display: none;
+        }
+        
+        .step.completed .step-line {
+            background-color: #10b981;
+        }
+        
+        .shipping-method {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .shipping-method:hover {
+            border-color: #000;
+        }
+        
+        .shipping-method.selected {
+            border-color: #000;
+            background-color: #f8fafc;
+        }
+        
+        .shipping-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #000;
+        }
+        
+        .btn-primary {
+            background-color: #000;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #000;
+            padding: 12px 30px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #000;
+            color: white;
+        }
+        
+        .order-summary {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .order-item {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 15px 0;
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .saved-address {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .saved-address:hover {
+            border-color: #000;
+        }
+        
+        .saved-address.selected {
+            border-color: #000;
+            background-color: #f8fafc;
+        }
+        
+        .address-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body class="bg-white text-black">
+    <!-- Header -->
+    <header class="bg-black text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <h1 class="logo-text">SHOP TA <span class="text-gray-300">SAPE</span></h1>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="shop_ta_sape/index.html" class="nav-link hover:text-gray-300 transition">Boutique</a>
+                <a href="Atelier/index.html" class="nav-link hover:text-gray-300 transition">L'Atelier</a>
+                <a href="Marque/index.html" class="nav-link hover:text-gray-300 transition">La Marque</a>
+            </nav>
+            
+            <!-- Icons -->
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-gray-300 transition"><i class="fas fa-search"></i></a>
+                <a href="login.html" class="hover:text-gray-300 transition"><i class="fas fa-user"></i></a>
+                <a href="panier.html" class="hover:text-gray-300 transition relative">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="absolute -top-2 -right-2 bg-white text-black rounded-full w-5 h-5 flex items-center justify-center text-xs">3</span>
+                </a>
+                <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black py-4 px-4">
+            <a href="shop_ta_sape/index.html" class="block py-2 hover:text-gray-300 transition">Boutique</a>
+            <a href="Atelier/index.html" class="block py-2 hover:text-gray-300 transition">L'Atelier</a>
+            <a href="Marque/index.html" class="block py-2 hover:text-gray-300 transition">La Marque</a>
+            <div class="border-t border-gray-700 mt-2 pt-2">
+                <a href="login.html" class="block py-2 hover:text-gray-300 transition">Connexion</a>
+                <a href="register.html" class="block py-2 hover:text-gray-300 transition">Inscription</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Indicateur de progression -->
+    <section class="bg-gray-100 py-4">
+        <div class="container mx-auto px-4">
+            <div class="step-indicator">
+                <div class="step completed">
+                    <div class="step-circle">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <span>Panier</span>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step active">
+                    <div class="step-circle">2</div>
+                    <span>Livraison</span>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step">
+                    <div class="step-circle">3</div>
+                    <span>Paiement</span>
+                    <div class="step-line"></div>
+                </div>
+                <div class="step">
+                    <div class="step-circle">4</div>
+                    <span>Confirmation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section de livraison -->
+    <section class="delivery-section py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto fade-in">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Formulaire d'adresse -->
+                    <div class="delivery-card p-8">
+                        <h2 class="text-2xl font-bold mb-6">ADRESSE DE LIVRAISON</h2>
+                        
+                        <!-- Adresses sauvegardées -->
+                        <div class="mb-6">
+                            <h3 class="form-label mb-4">MES ADRESSES SAUVEGARDÉES</h3>
+                            
+                            <div class="saved-address selected" data-address="home">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-bold">Domicile</h4>
+                                        <p class="text-gray-700">Jean Dupont</p>
+                                        <p class="text-gray-700">123 Avenue de la Mode, 75001 Paris, France</p>
+                                        <p class="text-gray-700">+33 1 23 45 67 89</p>
+                                    </div>
+                                    <div class="text-green-600">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="address-actions">
+                                    <button class="text-sm text-blue-600 hover:underline">Modifier</button>
+                                    <button class="text-sm text-red-600 hover:underline">Supprimer</button>
+                                </div>
+                            </div>
+                            
+                            <div class="saved-address" data-address="work">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-bold">Bureau</h4>
+                                        <p class="text-gray-700">Jean Dupont</p>
+                                        <p class="text-gray-700">456 Rue du Commerce, 75002 Paris, France</p>
+                                        <p class="text-gray-700">+33 1 34 56 78 90</p>
+                                    </div>
+                                </div>
+                                <div class="address-actions">
+                                    <button class="text-sm text-blue-600 hover:underline">Utiliser cette adresse</button>
+                                    <button class="text-sm text-red-600 hover:underline">Supprimer</button>
+                                </div>
+                            </div>
+                            
+                            <button class="text-blue-600 hover:underline mt-2 flex items-center">
+                                <i class="fas fa-plus mr-2"></i>Ajouter une nouvelle adresse
+                            </button>
+                        </div>
+                        
+                        <!-- Formulaire d'adresse -->
+                        <div id="address-form">
+                            <h3 class="form-label mb-4">NOUVELLE ADRESSE</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="firstname" class="form-label">Prénom *</label>
+                                    <input type="text" id="firstname" class="form-input" value="Jean" required>
+                                </div>
+                                <div>
+                                    <label for="lastname" class="form-label">Nom *</label>
+                                    <input type="text" id="lastname" class="form-input" value="Dupont" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="phone" class="form-label">Téléphone *</label>
+                                <input type="tel" id="phone" class="form-input" value="+33 1 23 45 67 89" required>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="address" class="form-label">Adresse *</label>
+                                <input type="text" id="address" class="form-input" value="123 Avenue de la Mode" required>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="address2" class="form-label">Complément d'adresse</label>
+                                <input type="text" id="address2" class="form-input" placeholder="Appartement, étage, etc.">
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="zipcode" class="form-label">Code postal *</label>
+                                    <input type="text" id="zipcode" class="form-input" value="75001" required>
+                                </div>
+                                <div>
+                                    <label for="city" class="form-label">Ville *</label>
+                                    <input type="text" id="city" class="form-input" value="Paris" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="country" class="form-label">Pays *</label>
+                                <select id="country" class="form-input" required>
+                                    <option value="fr">France</option>
+                                    <option value="sn">Sénégal</option>
+                                    <option value="ci">Côte d'Ivoire</option>
+                                    <option value="other">Autre</option>
+                                </select>
+                            </div>
+                            
+                            <div class="flex items-start mb-6">
+                                <input type="checkbox" id="save-address" class="mr-2 mt-1" checked>
+                                <label for="save-address" class="text-sm">Sauvegarder cette adresse pour mes prochaines commandes</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Options de livraison -->
+                        <div class="mt-8">
+                            <h2 class="text-2xl font-bold mb-6">OPTIONS DE LIVRAISON</h2>
+                            
+                            <div class="shipping-method selected" data-method="standard">
+                                <div class="flex items-start">
+                                    <i class="fas fa-truck shipping-icon mt-1"></i>
+                                    <div class="flex-grow">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="font-bold">Livraison standard</h4>
+                                                <p class="text-gray-600">Livraison à domicile en 3-5 jours ouvrables</p>
+                                            </div>
+                                            <span class="font-bold">5.000 FCFA</span>
+                                        </div>
+                                        <p class="text-sm text-green-600 mt-2"><i class="fas fa-check-circle mr-1"></i>Livraison gratuite à partir de 100.000 FCFA</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="shipping-method" data-method="express">
+                                <div class="flex items-start">
+                                    <i class="fas fa-shipping-fast shipping-icon mt-1"></i>
+                                    <div class="flex-grow">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="font-bold">Livraison express</h4>
+                                                <p class="text-gray-600">Livraison à domicile en 1-2 jours ouvrables</p>
+                                            </div>
+                                            <span class="font-bold">12.000 FCFA</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mt-2">Disponible du lundi au vendredi</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="shipping-method" data-method="point-relais">
+                                <div class="flex items-start">
+                                    <i class="fas fa-store shipping-icon mt-1"></i>
+                                    <div class="flex-grow">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="font-bold">Point relais</h4>
+                                                <p class="text-gray-600">Retrait dans un point relais partenaire</p>
+                                            </div>
+                                            <span class="font-bold">3.000 FCFA</span>
+                                        </div>
+                                        <p class="text-sm text-green-600 mt-2"><i class="fas fa-check-circle mr-1"></i>Livraison gratuite à partir de 50.000 FCFA</p>
+                                        <button class="text-blue-600 hover:underline mt-2 text-sm">Choisir un point relais</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Instructions de livraison -->
+                        <div class="mt-6">
+                            <label for="delivery-instructions" class="form-label">Instructions de livraison (optionnel)</label>
+                            <textarea id="delivery-instructions" class="form-input" rows="3" placeholder="Informations supplémentaires pour le livreur..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Récapitulatif de la commande -->
+                    <div class="lg:col-span-1">
+                        <div class="delivery-card p-6 sticky top-24">
+                            <h3 class="font-bold text-xl mb-6">RÉCAPITULATIF DE LA COMMANDE</h3>
+                            
+                            <div class="order-summary p-4 mb-6">
+                                <div class="order-item">
+                                    <div class="flex justify-between mb-2">
+                                        <div class="flex items-center">
+                                            <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                                 alt="Chemise premium" class="w-16 h-16 object-cover rounded mr-3">
+                                            <div>
+                                                <p class="font-bold">Chemise Premium</p>
+                                                <p class="text-sm text-gray-600">Taille: M • Quantité: 1</p>
+                                            </div>
+                                        </div>
+                                        <span class="font-bold">45.000 FCFA</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="order-item">
+                                    <div class="flex justify-between mb-2">
+                                        <div class="flex items-center">
+                                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                                 alt="Jean denim" class="w-16 h-16 object-cover rounded mr-3">
+                                            <div>
+                                                <p class="font-bold">Jean Denim</p>
+                                                <p class="text-sm text-gray-600">Taille: 34 • Quantité: 1</p>
+                                            </div>
+                                        </div>
+                                        <span class="font-bold">65.000 FCFA</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="order-item">
+                                    <div class="flex justify-between mb-2">
+                                        <div class="flex items-center">
+                                            <img src="https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                                 alt="Chaussures cuir" class="w-16 h-16 object-cover rounded mr-3">
+                                            <div>
+                                                <p class="font-bold">Chaussures en Cuir</p>
+                                                <p class="text-sm text-gray-600">Pointure: 42 • Quantité: 1</p>
+                                            </div>
+                                        </div>
+                                        <span class="font-bold">85.000 FCFA</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="pt-4 border-t border-gray-300">
+                                    <div class="flex justify-between mb-2">
+                                        <span>Sous-total</span>
+                                        <span>195.000 FCFA</span>
+                                    </div>
+                                    <div class="flex justify-between mb-2">
+                                        <span>Livraison</span>
+                                        <span id="shipping-cost">5.000 FCFA</span>
+                                    </div>
+                                    <div class="flex justify-between mb-2 text-green-600">
+                                        <span>Remise</span>
+                                        <span>-10.000 FCFA</span>
+                                    </div>
+                                    <div class="flex justify-between font-bold text-lg pt-2 border-t border-gray-300">
+                                        <span>Total</span>
+                                        <span id="order-total">190.000 FCFA</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Code promo -->
+                            <div class="mb-6">
+                                <h4 class="font-bold mb-2">CODE PROMO</h4>
+                                <div class="flex gap-2">
+                                    <input type="text" placeholder="Entrez votre code" class="flex-grow form-input px-3 py-2">
+                                    <button class="bg-black text-white px-4 py-2 rounded font-bold">Appliquer</button>
+                                </div>
+                            </div>
+                            
+                            <button class="btn-primary mb-4" id="continue-to-payment">
+                                CONTINUER VERS LE PAIEMENT
+                            </button>
+                            <button class="btn-secondary">
+                                RETOUR AU PANIER
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">SHOP TA SAPE</h3>
+                    <p class="mb-4">Redéfinissez votre style avec nos collections exclusives et pièces uniques.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Liens -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">LIENS RAPIDES</h3>
+                    <ul class="space-y-2">
+                        <li><a href="shop_ta_sape/index.html" class="hover:text-gray-300 transition">Boutique Officielle</a></li>
+                        <li><a href="Atelier/index.html" class="hover:text-gray-300 transition">L'Atelier</a></li>
+                        <li><a href="Marque/index.html" class="hover:text-gray-300 transition">La Marque</a></li>
+                        <li><a href="#contact" class="hover:text-gray-300 transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Informations -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">INFORMATIONS</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="hover:text-gray-300 transition">À propos</a></li>
+                        <li><a href="#shipping" class="hover:text-gray-300 transition">Livraison</a></li>
+                        <li><a href="#returns" class="hover:text-gray-300 transition">Retours</a></li>
+                        <li><a href="#privacy" class="hover:text-gray-300 transition">Politique de confidentialité</a></li>
+                        <li><a href="#terms" class="hover:text-gray-300 transition">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">CONTACT</h3>
+                    <address class="not-italic">
+                        <p class="mb-2">Email: contact@shoptasape.com</p>
+                        <p class="mb-2">Téléphone: +221 78 000 00 00</p>
+                        <p>Adresse: 123 Rue de la Mode, Dakar</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Shop Ta Sape. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Sélection des adresses sauvegardées
+        document.querySelectorAll('.saved-address').forEach(address => {
+            address.addEventListener('click', function() {
+                // Désélectionner toutes les adresses
+                document.querySelectorAll('.saved-address').forEach(a => {
+                    a.classList.remove('selected');
+                    a.querySelector('.fa-check-circle')?.classList.add('hidden');
+                });
+                
+                // Sélectionner l'adresse cliquée
+                this.classList.add('selected');
+                
+                // Ajouter l'icône de vérification
+                const checkIcon = document.createElement('i');
+                checkIcon.className = 'fas fa-check-circle';
+                checkIcon.style.color = '#10b981';
+                
+                // Vérifier si l'icône existe déjà
+                if (!this.querySelector('.fa-check-circle')) {
+                    this.querySelector('.flex.justify-between').appendChild(checkIcon);
+                }
+                
+                // Remplir le formulaire avec les données de l'adresse
+                const addressType = this.getAttribute('data-address');
+                if (addressType === 'home') {
+                    document.getElementById('firstname').value = 'Jean';
+                    document.getElementById('lastname').value = 'Dupont';
+                    document.getElementById('phone').value = '+33 1 23 45 67 89';
+                    document.getElementById('address').value = '123 Avenue de la Mode';
+                    document.getElementById('zipcode').value = '75001';
+                    document.getElementById('city').value = 'Paris';
+                    document.getElementById('country').value = 'fr';
+                } else if (addressType === 'work') {
+                    document.getElementById('firstname').value = 'Jean';
+                    document.getElementById('lastname').value = 'Dupont';
+                    document.getElementById('phone').value = '+33 1 34 56 78 90';
+                    document.getElementById('address').value = '456 Rue du Commerce';
+                    document.getElementById('zipcode').value = '75002';
+                    document.getElementById('city').value = 'Paris';
+                    document.getElementById('country').value = 'fr';
+                }
+            });
+        });
+        
+        // Sélection des méthodes de livraison
+        document.querySelectorAll('.shipping-method').forEach(method => {
+            method.addEventListener('click', function() {
+                // Désélectionner toutes les méthodes
+                document.querySelectorAll('.shipping-method').forEach(m => {
+                    m.classList.remove('selected');
+                });
+                
+                // Sélectionner la méthode cliquée
+                this.classList.add('selected');
+                
+                // Mettre à jour le coût de livraison et le total
+                const methodType = this.getAttribute('data-method');
+                let shippingCost = 0;
+                
+                switch(methodType) {
+                    case 'standard':
+                        shippingCost = 5000;
+                        break;
+                    case 'express':
+                        shippingCost = 12000;
+                        break;
+                    case 'point-relais':
+                        shippingCost = 3000;
+                        break;
+                }
+                
+                document.getElementById('shipping-cost').textContent = shippingCost.toLocaleString('fr-FR') + ' FCFA';
+                
+                // Recalculer le total
+                const subtotal = 195000;
+                const discount = 10000;
+                const total = subtotal + shippingCost - discount;
+                
+                document.getElementById('order-total').textContent = total.toLocaleString('fr-FR') + ' FCFA';
+            });
+        });
+        
+        // Continuer vers le paiement
+        document.getElementById('continue-to-payment').addEventListener('click', function() {
+            // Validation simple
+            const firstname = document.getElementById('firstname').value;
+            const lastname = document.getElementById('lastname').value;
+            const address = document.getElementById('address').value;
+            
+            if (!firstname || !lastname || !address) {
+                alert('Veuillez remplir tous les champs obligatoires');
+                return;
+            }
+            
+            // Simulation de traitement
+            this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Redirection...';
+            this.disabled = true;
+            
+            setTimeout(function() {
+                window.location.href = 'checkout.html';
+            }, 1500);
+        });
+        
+        // Retour au panier
+        document.querySelector('.btn-secondary').addEventListener('click', function() {
+            window.location.href = 'panier.html';
+        });
+        
+        // Application du code promo
+        document.querySelector('.bg-black.text-white').addEventListener('click', function() {
+            const promoCode = this.previousElementSibling.value;
+            if (promoCode.toUpperCase() === 'SAPE10') {
+                alert('Code promo appliqué avec succès!');
+            } else {
+                alert('Code promo invalide');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier - Shop Ta Sape</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-white text-black">
+    <!-- Header -->
+    <header class="bg-black text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+          <div class="flex items-center">
+                <h1 class="text-3xl font-bold tracking-wider">SHOP TA <span class="text-gray-300">SAPE</span></h1>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="shop_ta_sape/index.html" class="nav-link hover:text-gray-300 transition">Boutique</a>
+                <a href="Atelier/index.html" class="nav-link hover:text-gray-300 transition">L'Atelier</a>
+                <a href="Marque/index.html" class="nav-link hover:text-gray-300 transition">La Marque</a>
+            </nav>
+            
+            <!-- Icons -->
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-gray-300 transition"><i class="fas fa-search"></i></a>
+                <a href="login.html" class="hover:text-gray-300 transition"><i class="fas fa-user"></i></a>
+                <a href="panier.html" class="hover:text-gray-300 transition relative text-white">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="absolute -top-2 -right-2 bg-white text-black rounded-full w-5 h-5 flex items-center justify-center text-xs">3</span>
+                </a>
+                <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black py-4 px-4">
+            <a href="shop_ta_sape/index.html" class="block py-2 hover:text-gray-300 transition">Boutique</a>
+            <a href="Atelier/index.html" class="block py-2 hover:text-gray-300 transition">L'Atelier</a>
+            <a href="Marque/index.html" class="block py-2 hover:text-gray-300 transition">La Marque</a>
+            <div class="border-t border-gray-700 mt-2 pt-2">
+                <a href="login.html" class="block py-2 hover:text-gray-300 transition">Connexion</a>
+                <a href="register.html" class="block py-2 hover:text-gray-300 transition">Inscription</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Panier Section -->
+    <section class="cart-section py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 fade-in">VOTRE PANIER</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Liste des articles -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Article 1 -->
+                    <div class="cart-item p-6 fade-in">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex-shrink-0">
+                                <img src="../img/plugB.jpg" 
+                                     alt="t-shirt premium" class="w-32 h-32 object-cover rounded">
+                            </div>
+                            <div class="flex-grow">
+                                <div class="flex justify-between">
+                                    <h3 class="font-bold text-lg">T-shirt Premium</h3>
+                                    <button class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <p class="text-gray-600 my-2"> Coupe slim</p>
+                                <p class="text-gray-600">Taille: M</p>
+                                <div class="flex justify-between items-center mt-4">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="font-bold">Quantité:</span>
+                                        <button class="quantity-btn">-</button>
+                                        <input type="text" value="1" class="quantity-input">
+                                        <button class="quantity-btn">+</button>
+                                    </div>
+                                    <div class="font-bold text-lg">15.000 FCFA</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Article 2 -->
+                    <div class="cart-item p-6 fade-in">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex-shrink-0">
+                                <img src="../img/over2.jpg" 
+                                     alt="Casquettes denim" class="w-32 h-32 object-cover rounded">
+                            </div>
+                            <div class="flex-grow">
+                                <div class="flex justify-between">
+                                    <h3 class="font-bold text-lg">Casquettes Denim</h3>
+                                    <button class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <p class="text-gray-600 my-2">Casquettes  stretch</p>
+                                <p class="text-gray-600">Taille: 34</p>
+                                <div class="flex justify-between items-center mt-4">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="font-bold">Quantité:</span>
+                                        <button class="quantity-btn">-</button>
+                                        <input type="text" value="1" class="quantity-input">
+                                        <button class="quantity-btn">+</button>
+                                    </div>
+                                    <div class="font-bold text-lg">20.000 FCFA</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Article 3 -->
+                    <div class="cart-item p-6 fade-in">
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="flex-shrink-0">
+                                <img src="../img/chrome_hearts1.jpg" 
+                                     alt="accessoires" class="w-32 h-32 object-cover rounded">
+                            </div>
+                            <div class="flex-grow">
+                                <div class="flex justify-between">
+                                    <h3 class="font-bold text-lg">Chromes Hearts accessoires</h3>
+                                    <button class="remove-btn">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <p class="text-gray-600 my-2">accessoires Chromes Hearts</p>
+                                <p class="text-gray-600">Taille: Unique</p>     
+                                <div class="flex justify-between items-center mt-4">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="font-bold">Quantité:</span>
+                                        <button class="quantity-btn">-</button>
+                                        <input type="text" value="1" class="quantity-input">
+                                        <button class="quantity-btn">+</button>
+                                    </div>
+                                    <div class="font-bold text-lg">15.000 FCFA</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Code promo -->
+                    <div class="cart-item p-6 fade-in">
+                        <h3 class="font-bold text-lg mb-4">CODE PROMO</h3>
+                        <div class="flex gap-4">
+                            <input type="text" placeholder="Entrez votre code" class="flex-grow form-input px-4 py-2 border border-gray-300 rounded">
+                            <button class="bg-black text-white px-6 py-2 rounded font-bold">Appliquer</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Récapitulatif -->
+                <div class="lg:col-span-1">
+                    <div class="summary-card p-6 fade-in">
+                        <h3 class="font-bold text-xl mb-6">RÉCAPITULATIF DE LA COMMANDE</h3>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="flex justify-between">
+                                <span>Sous-total</span>
+                                <span>45.000 FCFA</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Livraison</span>
+                                <span>5.000 FCFA</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Remise</span>
+                                <span class="text-green-600">0 FCFA</span>
+                            </div>
+                            <div class="border-t border-gray-300 pt-4 flex justify-between font-bold text-lg">
+                                <span>Total</span>
+                                <span>50.000 FCFA</span>
+                            </div>
+                        </div>
+                        
+                        <button class="checkout-btn mb-4">PROCÉDER AU PAIEMENT</button>
+                        <button class="continue-btn">CONTINUER MES ACHATS</button>
+                    </div>
+                    
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Sécurité -->
+    <section class="py-16 bg-black text-white">
+            <h2 class="text-3xl font-bold mb-4 text-center">ACHETEZ EN TOUTE SÉCURITÉ</h2>
+                    <div class="mt-6 text-center text-gray-600">
+                        <div class="flex justify-center space-x-4 mb-2">
+                            <i class="fas fa-lock"style = "color: white;"></i>
+                            <i class="fas fa-shield-alt"style = "color: white;"></i>
+                            <i class="fas fa-credit-card"style = "color: white;"></i>
+                        </div>
+                        <p class="text-sm"style = "color: whitesmoke;">Paiement sécurisé • Livraison rapide • Retour facile</p>
+                    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">SHOP TA SAPE</h3>
+                    <p class="mb-4">Redéfinissez votre style avec nos collections exclusives et pièces uniques.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-gray-300"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Liens -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">LIENS RAPIDES</h3>
+                    <ul class="space-y-2">
+                        <li><a href="shop_ta_sape/index.html" class="hover:text-gray-300 transition">Boutique Officielle</a></li>
+                        <li><a href="Atelier/index.html" class="hover:text-gray-300 transition">L'Atelier</a></li>
+                        <li><a href="Marque/index.html" class="hover:text-gray-300 transition">La Marque</a></li>
+                        <li><a href="#contact" class="hover:text-gray-300 transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Informations -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">INFORMATIONS</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="hover:text-gray-300 transition">À propos</a></li>
+                        <li><a href="#shipping" class="hover:text-gray-300 transition">Livraison</a></li>
+                        <li><a href="#returns" class="hover:text-gray-300 transition">Retours</a></li>
+                        <li><a href="#privacy" class="hover:text-gray-300 transition">Politique de confidentialité</a></li>
+                        <li><a href="#terms" class="hover:text-gray-300 transition">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">CONTACT</h3>
+                    <address class="not-italic">
+                        <p class="mb-2">Email: contact@shoptasape.com</p>
+                        <p class="mb-2">Téléphone: +221 78 000 00 00</p>
+                        <p>Adresse: 123 Rue de la Mode, Dakar</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Shop Ta Sape. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script/script.js"></script>
+</body>
+</html>
